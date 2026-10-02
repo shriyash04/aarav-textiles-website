@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-body text-body text-neutral-900 bg-neutral-50;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    @apply bg-brand-200 text-brand-950;
+  }
+
+  img {
+    @apply block max-w-full;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  /* Reusable section wrapper */
+  .section-container {
+    @apply mx-auto max-w-8xl px-5 sm:px-8 lg:px-12 xl:px-16;
+  }
+
+  /* Eyebrow label */
+  .eyebrow {
+    @apply text-eyebrow uppercase tracking-widest text-accent;
+  }
+
+  /* Primary button */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           px-7 py-3.5
+           text-body-sm font-medium tracking-wide
+           text-white bg-neutral-900 
+           border border-neutral-900
+           transition-all duration-300 ease-out-expo
+           hover:bg-accent hover:border-accent
+           focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent;
+  }
+
+  /* Secondary / outline button */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2
+           px-7 py-3.5
+           text-body-sm font-medium tracking-wide
+           text-neutral-900 bg-transparent
+           border border-neutral-300
+           transition-all duration-300 ease-out-expo
+           hover:border-neutral-900 hover:text-neutral-950
+           focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900;
+  }
+
+  /* Light variant button for dark backgrounds */
+  .btn-light {
+    @apply inline-flex items-center justify-center gap-2
+           px-7 py-3.5
+           text-body-sm font-medium tracking-wide
+           text-neutral-900 bg-white
+           border border-white
+           transition-all duration-300 ease-out-expo
+           hover:bg-brand-100 hover:border-brand-100
+           focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white;
+  }
+}
+
+@layer utilities {
+  /* Scroll-triggered reveal animation base */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.is-visible,
+  .reveal[data-revealed="true"],
+  [data-revealed="true"] .reveal {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+  .reveal-delay-5 { transition-delay: 0.5s; }
+  .reveal-delay-6 { transition-delay: 0.6s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
